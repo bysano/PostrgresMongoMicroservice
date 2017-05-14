@@ -1,0 +1,26 @@
+spring:
+  application:
+      name: newsservice
+  data:
+    mongodb:
+      database: test
+      host: 192.168.99.100
+      port: 27017
+
+  cloud:
+    config:
+      uri: http://192.168.99.100:8888
+      fail-fast: true
+encrypt:
+  failOnError: false
+
+eureka:
+  instance:
+    leaseRenewalIntervalInSeconds: 1
+    leaseExpirationDurationInSeconds: 2
+  client:
+    serviceUrl:
+      defaultZone: http://192.168.99.100:8761/eureka/
+
+
+
