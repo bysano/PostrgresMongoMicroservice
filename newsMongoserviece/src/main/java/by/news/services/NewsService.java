@@ -7,7 +7,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.text.ParseException;
 import java.util.List;
 
 @Service
@@ -18,12 +17,6 @@ public class NewsService {
     @Autowired
     private NewsRepository newsRepository;
 
-//    public void insertData() throws ParseException {
-//        log.info("### > Inserting Data...");
-//      News news = new News("Inserted Tittle","inserted subject","inserted tags");
-//
-//        log.info("> Done.");
-//    }
 
     public NewsService(NewsRepository newsRepository) {
         this.newsRepository = newsRepository;

@@ -6,7 +6,6 @@ import by.user.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-
 import java.util.List;
 
 @Service
@@ -17,7 +16,7 @@ public class UserService {
     private AddressRepository addressRepository;
 
     public List<User> getUsers() {
-        List<User> users = this.userRepository.findAll();
+        List<User> users = userRepository.findAll();
         return users;
     }
 
@@ -27,8 +26,8 @@ public class UserService {
     }
 
     public void addUser(User user) {
-        this.userRepository.save(user);
-        this.addressRepository.save(user.getAddress());
+        userRepository.save(user);
+        addressRepository.save(user.getAddress());
     }
 
     public boolean checkExistence(User user) {
@@ -40,13 +39,13 @@ public class UserService {
 
     public void deleteUser(User user) {
 
-        this.userRepository.delete(user);
+        userRepository.delete(user);
 
 
     }
 
     public void deleteUserByName(String name) {
-        this.userRepository.deleteUserByName(name);
+        userRepository.deleteUserByName(name);
     }
 
     public User getUserByQuery() {

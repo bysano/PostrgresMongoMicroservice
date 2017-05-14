@@ -12,9 +12,7 @@ import org.springframework.stereotype.Component;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by alka0317 on 5/11/2017.
- */
+
 @Component
 public class DatabaseSetter implements CommandLineRunner {
 

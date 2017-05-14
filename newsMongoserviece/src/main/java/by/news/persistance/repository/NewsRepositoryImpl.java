@@ -11,9 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-/**
- * Created by alka0317 on 4/21/2017.
- */
+
 @Transactional(readOnly = true)
 @Repository
 public class NewsRepositoryImpl implements NewsRepositoryCustom {
