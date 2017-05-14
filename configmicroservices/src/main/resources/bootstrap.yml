@@ -1,6 +1,12 @@
+server:
+  port: 8888
+
 spring:
   application:
     name: configserver
   cloud:
     config:
       fail-fast: true
+      server:
+        git:
+          uri: https://github.com/bysano/spring-boot-microservice-config

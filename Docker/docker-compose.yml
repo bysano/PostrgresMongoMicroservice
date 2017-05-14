@@ -1,18 +1,17 @@
 version: '2'
 services:
-  discovery:
-      image: test/euricaserver
-      ports:
-        - "8761:8761"
   configserver:
     image: test/config-microservices
     restart: always
-    links:
-      - discovery
     ports:
       - "8888:8888"
-    depends_on:
-      - "discovery"
+  discovery:
+    image: test/euricaserver
+    ports:
+       - "8761:8761"
+    restart: always
+    links:
+       - configserver
   gateway:
     image: test/gateway
     restart: always
@@ -32,12 +31,12 @@ services:
   mongoserviece:
     image: test/newsmongoserviece
     ports:
-            - "9098:9098"
+        - "9098:9098"
     restart: always
     links:
-          - discovery
-          - configserver
-          - mongo-db
+        - discovery
+        - configserver
+        - mongo-db
   postgres:
     image: postgres:latest
     ports:
