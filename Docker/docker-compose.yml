@@ -1,0 +1,57 @@
+version: '2'
+services:
+  discovery:
+      image: test/euricaserver
+      ports:
+        - "8761:8761"
+  configserver:
+    image: test/config-microservices
+    restart: always
+    links:
+      - discovery
+    ports:
+      - "8888:8888"
+    depends_on:
+      - "discovery"
+  gateway:
+    image: test/gateway
+    restart: always
+    links:
+      - discovery
+      - configserver
+    ports:
+      - "4000:4000"
+    depends_on:
+      - "discovery"
+      - "configserver"
+  mongo-db:
+    image: mongo:latest
+    ports:
+        - "27017:27017"
+    restart: always
+  mongoserviece:
+    image: test/newsmongoserviece
+    ports:
+            - "9098:9098"
+    restart: always
+    links:
+          - discovery
+          - configserver
+          - mongo-db
+  postgres:
+    image: postgres:latest
+    ports:
+        - "5432:5432"
+    restart: always
+    environment:
+        - POSTGRES_USER:'postgres'
+        - POSTGRES_PASSWORD:'admin'
+  userservice:
+    image: test/userservice
+    ports:
+            - "9090:9090"
+    restart: always
+    links:
+          - discovery
+          - configserver
+          - postgres
