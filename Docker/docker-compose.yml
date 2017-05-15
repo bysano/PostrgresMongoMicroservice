@@ -18,6 +18,8 @@ services:
     links:
       - discovery
       - configserver
+      - newsservice
+      - userservice
     ports:
       - "4000:4000"
     depends_on:
@@ -28,7 +30,7 @@ services:
     ports:
         - "27017:27017"
     restart: always
-  mongoserviece:
+  newsservice:
     image: test/newsmongoserviece
     ports:
         - "9098:9098"
