@@ -1,11 +1,9 @@
 package by.news.domain;
 
-
-
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
-
 import java.io.Serializable;
+import java.util.Objects;
 
 @Document(collection = "news")
 public class News implements Serializable {
@@ -26,16 +24,6 @@ public class News implements Serializable {
 
     public News() {
         super();
-    }
-
-    @Override
-    public String toString() {
-        return "News{" +
-                "id='" + id + '\'' +
-                ", title='" + title + '\'' +
-                ", subject='" + subject + '\'' +
-                ", tags='" + tags + '\'' +
-                '}';
     }
 
     public String getId() {
@@ -74,21 +62,26 @@ public class News implements Serializable {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-
         News news = (News) o;
-
-        if (id != null ? !id.equals(news.id) : news.id != null) return false;
-        if (title != null ? !title.equals(news.title) : news.title != null) return false;
-        if (subject != null ? !subject.equals(news.subject) : news.subject != null) return false;
-        return tags != null ? tags.equals(news.tags) : news.tags == null;
+        return Objects.equals(id, news.id) &&
+                Objects.equals(title, news.title) &&
+                Objects.equals(subject, news.subject) &&
+                Objects.equals(tags, news.tags);
     }
 
     @Override
     public int hashCode() {
-        int result = id != null ? id.hashCode() : 0;
-        result = 31 * result + (title != null ? title.hashCode() : 0);
-        result = 31 * result + (subject != null ? subject.hashCode() : 0);
-        result = 31 * result + (tags != null ? tags.hashCode() : 0);
-        return result;
+        return Objects.hash(id, title, subject, tags);
+    }
+
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("News{");
+        sb.append("id='").append(id).append('\'');
+        sb.append(", title='").append(title).append('\'');
+        sb.append(", subject='").append(subject).append('\'');
+        sb.append(", tags='").append(tags).append('\'');
+        sb.append('}');
+        return sb.toString();
     }
 }

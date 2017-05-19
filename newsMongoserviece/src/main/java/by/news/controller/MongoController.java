@@ -15,19 +15,21 @@ import java.util.List;
 @RestController
 public class MongoController {
 
-    @Autowired
     private NewsService newsService;
 
+    @Autowired
+    public MongoController(NewsService newsService) {
+        this.newsService = newsService;
+    }
 
     @GetMapping("/info")
     public String info() {
         return "hello";
     }
 
-
     @GetMapping("/news")
     public List<News> getNews() {
-        List<News> news = this.newsService.getNews();
+        List<News> news = newsService.getNews();
         return news;
     }
 

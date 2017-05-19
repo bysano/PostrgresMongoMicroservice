@@ -14,10 +14,9 @@ public class NewsService {
 
     private static final Logger log = LoggerFactory.getLogger(NewsService.class);
 
-    @Autowired
     private NewsRepository newsRepository;
 
-
+    @Autowired
     public NewsService(NewsRepository newsRepository) {
         this.newsRepository = newsRepository;
     }

@@ -7,17 +7,18 @@ import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
-
-
 import java.util.List;
-
 
 @Transactional(readOnly = true)
 @Repository
 public class NewsRepositoryImpl implements NewsRepositoryCustom {
 
-    @Autowired
     private MongoTemplate mongoTemplate;
+
+    @Autowired
+    public NewsRepositoryImpl(MongoTemplate mongoTemplate) {
+        this.mongoTemplate = mongoTemplate;
+    }
 
     private static final String NEWS_FIELD_TITLE ="title";
 
@@ -28,6 +29,5 @@ public class NewsRepositoryImpl implements NewsRepositoryCustom {
         List<News> newsList = mongoTemplate.find(query, News.class);
         return newsList;
     }
-
 
 }

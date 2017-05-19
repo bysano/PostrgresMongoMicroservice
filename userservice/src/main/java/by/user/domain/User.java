@@ -1,15 +1,16 @@
 package by.user.domain;
 
-
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
+import java.util.Objects;
 
 @Entity
 @Table(name="USERS")
 public class User implements Serializable {
 
     private static final long serialVersionUID = -3080840671537411737L;
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
@@ -21,7 +22,6 @@ public class User implements Serializable {
   //  @JoinColumn(name = "user_id")
     private List<Address> address;
 
-
     public User(String name, String surname) {
         this.name = name;
         this.surname = surname;
@@ -29,16 +29,6 @@ public class User implements Serializable {
 
     public User() {
         super();
-    }
-
-    @Override
-    public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", surname='" + surname + '\'' +
-                ", address=" + address +
-                '}';
     }
 
     public long getId() {
@@ -77,19 +67,26 @@ public class User implements Serializable {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-
         User user = (User) o;
-
-        if (id != user.id) return false;
-        if (name != null ? !name.equals(user.name) : user.name != null) return false;
-        return surname != null ? surname.equals(user.surname) : user.surname == null;
+        return id == user.id &&
+                Objects.equals(name, user.name) &&
+                Objects.equals(surname, user.surname) &&
+                Objects.equals(address, user.address);
     }
 
     @Override
     public int hashCode() {
-        int result = (int) (id ^ (id >>> 32));
-        result = 31 * result + (name != null ? name.hashCode() : 0);
-        result = 31 * result + (surname != null ? surname.hashCode() : 0);
-        return result;
+        return Objects.hash(id, name, surname, address);
+    }
+
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("User{");
+        sb.append("id=").append(id);
+        sb.append(", name='").append(name).append('\'');
+        sb.append(", surname='").append(surname).append('\'');
+        sb.append(", address=").append(address);
+        sb.append('}');
+        return sb.toString();
     }
 }
