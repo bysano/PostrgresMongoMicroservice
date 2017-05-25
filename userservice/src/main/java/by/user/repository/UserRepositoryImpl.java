@@ -5,7 +5,6 @@ import by.user.domain.User;
 import by.user.domain.User_;
 import org.springframework.stereotype.Repository;
 
-
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
@@ -26,7 +25,7 @@ public class UserRepositoryImpl implements UserRepositoryCustom {
         CriteriaBuilder builder = entityManager.getCriteriaBuilder();
         CriteriaQuery<User> userCriteriaQuery = builder.createQuery(User.class);
         Root<User> root = userCriteriaQuery.from(User.class);
-        userCriteriaQuery.select(root).where(builder.equal(root.get(User_.name), "test"));
+        userCriteriaQuery.select(root).where(builder.equal(root.get(User_.name), "SpringBootTestName"));
         TypedQuery<User> typedQuery = entityManager.createQuery(userCriteriaQuery);
         User mnewUserList = typedQuery.getSingleResult();
         return mnewUserList;

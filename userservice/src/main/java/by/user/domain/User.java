@@ -70,9 +70,8 @@ public class User implements Serializable {
         User user = (User) o;
         return id == user.id &&
                 Objects.equals(name, user.name) &&
-                Objects.equals(surname, user.surname) &&
-                Objects.equals(address, user.address);
-    }
+                Objects.equals(surname, user.surname);
+                    }
 
     @Override
     public int hashCode() {

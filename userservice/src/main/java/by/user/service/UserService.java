@@ -31,10 +31,10 @@ public class UserService {
     }
 
     public boolean checkExistence(User user) {
-        if (userRepository.findUserByName(user.getName()) != null)
-            return false;
-        else
-            return true;
+//        if (userRepository.findUserByName(user.getName()) != null)
+//            return false;
+//        else
+            return userRepository.exists(user.getId());
     }
 
     public void deleteUser(User user) {
@@ -45,6 +45,7 @@ public class UserService {
     }
 
     public void deleteUserByName(String name) {
+
         userRepository.deleteUserByName(name);
     }
 
