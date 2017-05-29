@@ -21,8 +21,8 @@ public class DatabaseSetter implements CommandLineRunner {
     @Override
     public void run(String... strings) throws Exception {
         List<News> newsList = new ArrayList<>();
-        newsList.add(new News("Inserted Tittle", "inserted subject", "inserted tags"));
-        newsList.add(new News("Random Tittle", "Random subject", "Random tags"));
+        newsList.add(new News("Inserted Tittle", "inserted subject", "inserted"));
+        newsList.add(new News("Random Tittle", "Random subject", "Random"));
         newsList.add(new News("Tittle", "subject", "tags"));
         newsRepository.deleteAll();
         log.info("### > Inserting Data...");

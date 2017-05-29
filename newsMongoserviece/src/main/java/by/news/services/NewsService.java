@@ -30,8 +30,8 @@ public class NewsService {
         newsRepository.insert(news);
     }
 
-    public List<News> findNewsbyTitleAndTags(String title, String tags){
-        return newsRepository.findbyTitleAndTags(title,tags);
+    public List<News> findNewsbyTitleAndTags(String tags){
+        return newsRepository.findbyTitleAndTags(tags);
     }
     public List<News> findByTitle(String title) {
         List<News> newsList = newsRepository.getNewsByTitle(title);

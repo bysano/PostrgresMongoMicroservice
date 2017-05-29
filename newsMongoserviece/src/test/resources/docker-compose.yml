@@ -1,19 +1,28 @@
 version: '2'
 services:
-  configserver:
-    image: test/config-microservices
-    restart: always
-    ports:
-      - "8888:8888"
-  discovery:
-    image: test/euricaserver
-    ports:
-       - "8761:8761"
-    restart: always
-    links:
-       - configserver
-  mongo-db:
-    image: mongo:latest
-    ports:
-        - "27017:27017"
-    restart: always
+#  configserver:
+#    image: test/config-microservices
+#    restart: always
+#    ports:
+#      - "8888:8888"
+#  discovery:
+#    image: test/euricaserver
+#    ports:
+#       - "8761:8761"
+#    restart: always
+#    links:
+#       - configserver
+#  mongo-db:
+#    image: mongo:latest
+#    ports:
+#        - "27017:27017"
+#    restart: always
+  newsservice:
+      image: test/newsmongoserviece
+      ports:
+          - "9098:9098"
+      restart: always
+#      links:
+#          - discovery
+#          - configserver
+#          - mongo-db

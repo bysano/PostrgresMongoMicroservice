@@ -13,7 +13,3 @@ spring:
       fail-fast: true
 encrypt:
   failOnError: false
-
-
-
-
