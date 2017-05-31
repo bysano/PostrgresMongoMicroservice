@@ -1,12 +1,6 @@
 spring:
   application:
       name: newsservice
-  data:
-    mongodb:
-      database: test
-      host: mongo-db
-      port: 27017
-
   cloud:
     config:
       uri: http://configserver:8888
