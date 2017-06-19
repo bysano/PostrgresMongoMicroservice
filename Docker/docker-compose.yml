@@ -2,48 +2,48 @@ version: '2'
 networks:
   nw:
 services:
-  configserver:
-    container_name: configserver
-    networks:
-       - nw
-    image: test/config-microservices
-    restart: always
-    ports:
-      - "8888:8888"
-  discovery:
-    container_name: discovery
-    networks:
-       - nw
-    image: test/euricaserver
-    ports:
-       - "8761:8761"
-    restart: always
-    links:
-       - configserver
-  gateway:
-    container_name: gateway
-    networks:
-       - nw
-    image: test/gateway
-    restart: always
-    links:
-      - discovery
-      - configserver
-      - newsservice
-      - userservice
-    ports:
-      - "4000:4000"
-    depends_on:
-      - "discovery"
-      - "configserver"
-  mongo-db:
-    container_name: mongo-db
-    networks:
-       - nw
-    image: mongo:latest
-    ports:
-        - "27017:27017"
-    restart: always
+#  configserver:
+#    container_name: configserver
+#    networks:
+#       - nw
+#    image: test/config-microservices
+#    restart: always
+#    ports:
+#      - "8888:8888"
+#  discovery:
+#    container_name: discovery
+#    networks:
+#       - nw
+#    image: test/euricaserver
+#    ports:
+#       - "8761:8761"
+#    restart: always
+#    links:
+#       - configserver
+#  gateway:
+#    container_name: gateway
+#    networks:
+#       - nw
+#    image: test/gateway
+#    restart: always
+#    links:
+#      - discovery
+#      - configserver
+#      - newsservice
+#      - userservice
+#    ports:
+#      - "4000:4000"
+#    depends_on:
+#      - "discovery"
+#      - "configserver"
+#  mongo-db:
+#    container_name: mongo-db
+#    networks:
+#       - nw
+#    image: mongo:latest
+#    ports:
+#        - "27017:27017"
+#    restart: always
   newsservice:
     container_name: newsservice
     networks:
@@ -52,30 +52,30 @@ services:
     ports:
         - "9098:9098"
     restart: always
-    links:
-        - discovery
-        - configserver
-        - mongo-db
-  postgres:
-    container_name: postgres
-    networks:
-       - nw
-    image: postgres:latest
-    ports:
-        - "5432:5432"
-    restart: always
-    environment:
-        - POSTGRES_USER:'postgres'
-        - POSTGRES_PASSWORD:'admin'
-  userservice:
-    container_name: userservice
-    networks:
-       - nw
-    image: test/userservice
-    ports:
-            - "9090:9090"
-    restart: always
-    links:
-          - discovery
-          - configserver
-          - postgres
+#    links:
+#        - discovery
+#        - configserver
+#        - mongo-db
+#  postgres:
+#    container_name: postgres
+#    networks:
+#       - nw
+#    image: postgres:latest
+#    ports:
+#        - "5432:5432"
+#    restart: always
+#    environment:
+#        - POSTGRES_USER:'postgres'
+#        - POSTGRES_PASSWORD:'admin'
+#  userservice:
+#    container_name: userservice
+#    networks:
+#       - nw
+#    image: test/userservice
+#    ports:
+#            - "9090:9090"
+#    restart: always
+#    links:
+#          - discovery
+#          - configserver
+#          - postgres
