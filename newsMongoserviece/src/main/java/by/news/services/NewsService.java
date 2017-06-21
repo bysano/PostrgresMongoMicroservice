@@ -5,9 +5,11 @@ import by.news.persistance.repository.NewsRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.mongodb.core.aggregation.ComparisonOperators;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.concurrent.ConcurrentLinkedQueue;
 
 @Service
 public class NewsService {
@@ -15,10 +17,12 @@ public class NewsService {
     private static final Logger log = LoggerFactory.getLogger(NewsService.class);
 
     private NewsRepository newsRepository;
+    private ConcurrentLinkedQueue<News> linkedQueue;
 
     @Autowired
-    public NewsService(NewsRepository newsRepository) {
+    public NewsService(NewsRepository newsRepository, ConcurrentLinkedQueue<News> linkedQueue) {
         this.newsRepository = newsRepository;
+        this.linkedQueue = linkedQueue;
     }
 
     public List<News> getNews() {
@@ -27,7 +31,8 @@ public class NewsService {
     }
 
     public void saveNews(News news) {
-        newsRepository.insert(news);
+        log.info("added in queue - {}",news);
+        linkedQueue.add(news);
     }
 
     public List<News> findNewsbyTitleAndTags(String tags){

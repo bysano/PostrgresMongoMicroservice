@@ -41,10 +41,10 @@ public class MongoController {
     }
 
     @PostMapping("/save")
-    public HttpStatus saveNews(@RequestBody News news) {
+    @ResponseStatus(HttpStatus.OK)
+    public void saveNews(@RequestBody News news) {
         newsService.saveNews(news);
-        return HttpStatus.OK;
-    }
+         }
 
     @GetMapping("/users")
     public List<User> getUsers() {
