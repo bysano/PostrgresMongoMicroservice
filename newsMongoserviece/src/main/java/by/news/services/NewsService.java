@@ -5,7 +5,6 @@ import by.news.persistance.repository.NewsRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.mongodb.core.aggregation.ComparisonOperators;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

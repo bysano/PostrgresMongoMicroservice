@@ -27,28 +27,28 @@ public class DataSeter implements CommandLineRunner {
 
     @Override
     public void run(String... strings) throws Exception {
-
-        addressRepository.deleteAll();
-        userRepository.deleteAll();
-        User user = new User("TestUser", "TestSurname");
-        Address address = new Address("TestCity", "test street", user);
-        List<Address> addresses = new ArrayList();
-        addresses.add(address);
-        user.setAddress(addresses);
-
-        userRepository.save(user);
-        addressRepository.save(user.getAddress());
-
-        User user1 = new User("aliaksandr", "Kazlouski");
-        Address address1 = new Address("Minsk", "Skorini", user1);
-        List<Address> addresses1 = new ArrayList();
-        addresses1.add(address1);
-        user1.setAddress(addresses1);
-
-        log.info("### > Inserting Data...");
-        userRepository.save(user1);
-        addressRepository.save(user1.getAddress());
-        log.info("> Done.");
+//
+//        addressRepository.deleteAll();
+//        userRepository.deleteAll();
+//        User user = new User("TestUser", "TestSurname");
+//        Address address = new Address("TestCity", "test street", user);
+//        List<Address> addresses = new ArrayList();
+//        addresses.add(address);
+//        user.setAddress(addresses);
+//
+//        userRepository.save(user);
+//        addressRepository.save(user.getAddress());
+//
+//        User user1 = new User("aliaksandr", "Kazlouski");
+//        Address address1 = new Address("Minsk", "Skorini", user1);
+//        List<Address> addresses1 = new ArrayList();
+//        addresses1.add(address1);
+//        user1.setAddress(addresses1);
+//
+//        log.info("### > Inserting Data...");
+//        userRepository.save(user1);
+//        addressRepository.save(user1.getAddress());
+//        log.info("> Done.");
 
     }
 }

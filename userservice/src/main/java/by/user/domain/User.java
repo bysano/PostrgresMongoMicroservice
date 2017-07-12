@@ -17,7 +17,7 @@ public class User implements Serializable {
     private String name;
     private String surname;
 
-    @OneToMany(mappedBy = "user",fetch = FetchType.EAGER,cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "user",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
   //  @OneToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
   //  @JoinColumn(name = "user_id")
     private List<Address> address;

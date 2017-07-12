@@ -20,12 +20,18 @@ services:
 #    environment:
 #        - POSTGRES_USER=postgres
 #        - POSTGRES_PASSWORD=admin
-  userservice:
-    image: test/userservice
-    ports:
-            - "9090:9090"
-    restart: always
+#  userservice:
+#    image: test/userservice
+#    ports:
+#            - "9090:9090"
+#    restart: always
 #    links:
 #          - discovery
 #          - configserver
 #          - postgres
+  testproxy:
+    image: testproxy
+    ports:
+      - "8080:8080"
+      - "8081:8081"
+    restart: always

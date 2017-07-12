@@ -16,15 +16,15 @@ public class DataBaseSetter implements CommandLineRunner {
 
     @Override
     public void run(String... strings) throws Exception {
-        accountRepository.deleteAll();
-        clientRepository.deleteAll();
-        Client client = new Client("test", 27);
-        Account account = new Account(22, "testaccount", client);
-        List<Account> accounts = new ArrayList<>();
-        accounts.add(account);
-        client.setAccounts(accounts);
-        clientRepository.save(client);
-        accountRepository.save(accounts);
+//        accountRepository.deleteAll();
+//        clientRepository.deleteAll();
+//        Client client = new Client("test", 27);
+//        Account account = new Account(22, "testaccount", client);
+//        List<Account> accounts = new ArrayList<>();
+//        accounts.add(account);
+//        client.setAccounts(accounts);
+//        clientRepository.save(client);
+//        accountRepository.save(accounts);
 
     }
 }
