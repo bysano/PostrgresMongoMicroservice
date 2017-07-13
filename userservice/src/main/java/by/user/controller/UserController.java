@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.persistence.criteria.Predicate;
+import javax.persistence.criteria.*;
 import java.util.Arrays;
 import java.util.List;
 
@@ -38,15 +38,30 @@ public class UserController {
             @RequestParam(value = "limit", required = false, defaultValue = "10") Integer limit,
             @RequestParam(value = "page", required = false, defaultValue = "1") Integer page,
             @RequestParam(value = "filter", required = false) FilterDTO[] filters) {
-        List<FilterDTO> filterDTOS =Arrays.asList(filters);
-        log.info("filter={}",filterDTOS);
+        List<FilterDTO> filterDTOS = Arrays.asList(filters);
+        log.info("filter={}", filterDTOS);
         PageRequest pageRequest = new PageRequest((page - 1), limit, new Sort(Sort.Direction.ASC, "name"));
-        Specification<User> specification = (root, criteriaQuery, criteriaBuilder) ->
-                   criteriaBuilder.and(criteriaBuilder.equal(root.get(filterDTOS.get(0).getProperty()),filterDTOS.get(0).getValue()));
+
+        Specification<User> specification = (root, criteriaQuery, criteriaBuilder) -> {
+
+            Predicate[] predicates = filterDTOS.stream().map(filter -> tranformTopredicate(filter, criteriaBuilder, root)).toArray(Predicate[]::new);
+
+            return criteriaBuilder.and(predicates);
+        };
         Page<User> users = repositoryPagingAndSorting.findAll(specification, pageRequest);
         return users;
     }
 
+    public Predicate tranformTopredicate(FilterDTO filterDTO, CriteriaBuilder criteriaBuilder, Root<User> root) {
+        switch (filterDTO.getOperator().getValue().toLowerCase()) {
+            case "eq":
+                return criteriaBuilder.equal(root.get(filterDTO.getProperty()), filterDTO.getValue());
+            case "in":
+               Path exp = root.<User>get(filterDTO.getProperty());
+            return exp.in(filterDTO.getValue());
+        }
+        return null;
+    }
 
     @GetMapping("/users")
     public Page<User> getUsers() {
