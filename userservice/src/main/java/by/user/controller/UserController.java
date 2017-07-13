@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.persistence.criteria.*;
+import javax.persistence.criteria.Predicate;
 import java.util.Arrays;
 import java.util.List;
 
@@ -44,23 +44,12 @@ public class UserController {
 
         Specification<User> specification = (root, criteriaQuery, criteriaBuilder) -> {
 
-            Predicate[] predicates = filterDTOS.stream().map(filter -> tranformTopredicate(filter, criteriaBuilder, root)).toArray(Predicate[]::new);
+            Predicate[] predicates = filterDTOS.stream().map(filter -> filter.getOperator().tranformTopredicate(filter, criteriaBuilder, root)).toArray(Predicate[]::new);
 
             return criteriaBuilder.and(predicates);
         };
-        Page<User> users = repositoryPagingAndSorting.findAll(specification, pageRequest);
-        return users;
-    }
 
-    public Predicate tranformTopredicate(FilterDTO filterDTO, CriteriaBuilder criteriaBuilder, Root<User> root) {
-        switch (filterDTO.getOperator().getValue().toLowerCase()) {
-            case "eq":
-                return criteriaBuilder.equal(root.get(filterDTO.getProperty()), filterDTO.getValue());
-            case "in":
-               Path exp = root.<User>get(filterDTO.getProperty());
-            return exp.in(filterDTO.getValue());
-        }
-        return null;
+        return repositoryPagingAndSorting.findAll(specification, pageRequest);
     }
 
     @GetMapping("/users")
