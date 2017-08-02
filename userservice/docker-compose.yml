@@ -1,25 +1,25 @@
 version: '2'
 services:
-#  configserver:
-#    image: test/config-microservices
-#    restart: always
-#    ports:
-#      - "8888:8888"
-#  discovery:
-#    image: test/euricaserver
-#    ports:
-#       - "8761:8761"
-#    restart: always
-#    links:
-#       - configserver
-#  postgres:
-#    image: postgres:latest
-#    ports:
-#        - "5432:5432"
-#    restart: always
-#    environment:
-#        - POSTGRES_USER=postgres
-#        - POSTGRES_PASSWORD=admin
+  configserver:
+    image: test/config-microservices
+    restart: always
+    ports:
+      - "8888:8888"
+  discovery:
+    image: test/euricaserver
+    ports:
+       - "8761:8761"
+    restart: always
+    links:
+       - configserver
+  postgres:
+    image: postgres:latest
+    ports:
+        - "5432:5432"
+    restart: always
+    environment:
+        - POSTGRES_USER=postgres
+        - POSTGRES_PASSWORD=admin
 #  userservice:
 #    image: test/userservice
 #    ports:
@@ -29,9 +29,9 @@ services:
 #          - discovery
 #          - configserver
 #          - postgres
-  testproxy:
-    image: testproxy
-    ports:
-      - "8080:8080"
-      - "8081:8081"
-    restart: always
+#  testproxy:
+#    image: testproxy
+#    ports:
+#      - "8080:8080"
+#      - "8081:8081"
+#    restart: always
