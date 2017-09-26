@@ -15,7 +15,6 @@
     </modules>
     <packaging>pom</packaging>
 
-
     <name>springboot-multiple-maven-modules</name>
     <description>Spring Boot Demo With Multiple Maven Modules</description>
 
