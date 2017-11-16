@@ -1,6 +1,7 @@
 package by.user.controller;
 
 import by.user.domain.FilterDTO;
+import by.user.domain.FilterOperator;
 import by.user.domain.User;
 import by.user.repository.UserRepositoryPagingAndSorting;
 import by.user.service.CommandExecutor;
@@ -50,6 +51,8 @@ public class UserController {
         Specification<User> specification = (root, criteriaQuery, criteriaBuilder) -> {
 
             Predicate[] predicates = filterDTOS.stream().map(filter -> filter.getOperator().tranformTopredicate(filter, criteriaBuilder, root)).toArray(Predicate[]::new);
+            FilterOperator filterOperator = FilterOperator.valueOf("IN");
+
 
             return criteriaBuilder.and(predicates);
         };
