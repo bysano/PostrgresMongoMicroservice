@@ -8,6 +8,8 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 @SpringBootApplication
 public class TestmappingApplication {
 
+
+
 	public static void main(String[] args) {
 		SpringApplication.run(TestmappingApplication.class, args);
 	}
