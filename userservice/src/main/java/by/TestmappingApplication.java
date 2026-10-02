@@ -10,6 +10,7 @@ public class TestmappingApplication {
 
 
 
+
 	public static void main(String[] args) {
 		SpringApplication.run(TestmappingApplication.class, args);
 	}
